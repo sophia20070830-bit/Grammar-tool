@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="中文英文文法 Wiki：從詞性、五大句型到子句與長句分析。">
+<title>Grammar Wiki｜英文文法知識庫</title>
+<style>
+:root{
+  --bg:#f7f6f2;--paper:#fffefa;--ink:#273449;--muted:#788397;
+  --line:#e8e5dc;--blue:#526b91;--blue-soft:#eaf0f8;
+  --lav:#eeeafa;--lav-ink:#70639a;--green:#e9f2e9;
+  --yellow:#fbf2d9;--shadow:0 8px 28px rgba(42,53,72,.06);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.7}
+button,input{font:inherit}
+button{cursor:pointer}
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100vh}
+.sidebar{background:#fbfaf7;border-right:1px solid var(--line);padding:28px 18px;position:sticky;top:0;height:100vh;overflow:auto}
+.brand{display:flex;align-items:center;gap:11px;padding:0 10px 25px}
+.brand-mark{width:38px;height:38px;border-radius:12px;background:var(--blue);color:white;display:grid;place-items:center;font-weight:800}
+.brand strong{display:block;font-size:15px;letter-spacing:.02em}
+.brand small{color:var(--muted);font-size:11px}
+.nav-label{font-size:10px;letter-spacing:.14em;color:#9a9b9b;padding:14px 12px 7px;font-weight:700}
+.nav{display:flex;flex-direction:column;gap:3px}
+.nav a{color:#647084;text-decoration:none;padding:8px 12px;border-radius:9px;font-size:13px;display:flex;gap:10px;align-items:center}
+.nav a:hover,.nav a.active{background:var(--blue-soft);color:var(--blue);font-weight:700}
+.nav .num{font-size:10px;color:#a0a6b0;width:18px}
+.side-note{margin:25px 8px 0;padding:13px;border-radius:12px;background:var(--lav);font-size:11px;color:#71688e}
+main{min-width:0}
+.topbar{height:66px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(255,254,250,.82);position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}
+.breadcrumb{font-size:12px;color:var(--muted)}
+.top-actions{display:flex;gap:10px;align-items:center}
+.search-wrap{position:relative}
+.search{width:min(290px,38vw);border:1px solid var(--line);background:white;border-radius:10px;padding:8px 12px 8px 34px;font-size:12px;outline:none}
+.search:focus{border-color:#9aaecb;box-shadow:0 0 0 3px var(--blue-soft)}
+.search-icon{position:absolute;left:11px;top:6px;color:#9aa2ae;font-size:15px}
+.progress-pill{font-size:11px;background:var(--green);color:#55745a;padding:6px 10px;border-radius:20px;white-space:nowrap}
+.content{max-width:1120px;margin:0 auto;padding:48px 5vw 90px}
+.hero{background:linear-gradient(115deg,#eaf0f8 0%,#f0edf9 58%,#f8f4e8 100%);border-radius:22px;padding:36px 40px;margin-bottom:34px;position:relative;overflow:hidden}
+.hero:after{content:"Aa";position:absolute;right:40px;bottom:-38px;font-family:Georgia,serif;font-size:180px;color:rgba(82,107,145,.08);font-weight:bold}
+.eyebrow{font-size:11px;letter-spacing:.16em;color:var(--blue);font-weight:800;text-transform:uppercase}
+h1{font-family:Georgia,"Noto Serif TC",serif;font-size:clamp(30px,4vw,46px);line-height:1.2;margin:12px 0;color:#283750}
+.hero p{max-width:590px;color:#65738a;font-size:14px;margin:0}
+.hero-meta{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}
+.tag{font-size:10px;border:1px solid rgba(82,107,145,.18);padding:4px 9px;border-radius:20px;color:#62728a;background:rgba(255,255,255,.48)}
+.section-head{display:flex;justify-content:space-between;align-items:end;margin:34px 0 15px;gap:15px}
+.section-head h2{font-size:19px;margin:0;font-family:Georgia,"Noto Serif TC",serif}
+.section-head p{margin:4px 0 0;color:var(--muted);font-size:11px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.topic-card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:17px 18px;min-height:132px;box-shadow:var(--shadow);transition:.18s;cursor:pointer}
+.topic-card:hover{transform:translateY(-3px);border-color:#cbd5e3}
+.card-top{display:flex;justify-content:space-between;align-items:center}
+.card-num{font-size:10px;color:#a2a6ae;letter-spacing:.1em}
+.card-icon{width:29px;height:29px;border-radius:9px;background:var(--blue-soft);display:grid;place-items:center;color:var(--blue);font-size:14px}
+.topic-card h3{font-size:14px;margin:12px 0 3px}
+.topic-card p{font-size:11px;color:var(--muted);margin:0}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:23px;margin-top:15px}
+.panel h3{font-size:15px;margin:0 0 12px}
+.path{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:12px}
+.path span{background:#f1f0eb;padding:7px 11px;border-radius:8px}
+.path b{color:#aab0b9;font-weight:400}
+.note{background:var(--yellow);border-left:3px solid #d6b75c;padding:12px 15px;border-radius:0 9px 9px 0;font-size:12px;color:#77643a;margin:14px 0}
+.chapter{scroll-margin-top:90px;margin-top:52px}
+.chapter-title{display:flex;align-items:center;gap:13px;margin-bottom:18px}
+.chapter-title .badge{background:var(--blue);color:white;border-radius:10px;padding:7px 10px;font-size:11px}
+.chapter-title h2{font-family:Georgia,"Noto Serif TC",serif;font-size:25px;margin:0}
+.chapter-title p{font-size:11px;color:var(--muted);margin:2px 0 0}
+.subhead{font-size:16px;margin:25px 0 10px}
+.lead{color:#68768a;font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:12px;margin:12px 0 18px;background:#fffefa;border-radius:10px;overflow:hidden}
+th{text-align:left;background:#eef1f6;color:#52627a;font-weight:700}
+th,td{padding:10px 12px;border-bottom:1px solid #eeece6;vertical-align:top}
+tr:last-child td{border-bottom:0}
+code,.example{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+.example{background:#f4f3ef;border-radius:9px;padding:12px 15px;font-size:12px;margin:10px 0;color:#34435b}
+.example strong{color:#526b91}
+.cards-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.mini{background:#f8f7f3;border:1px solid #eeece5;padding:14px;border-radius:11px}
+.mini strong{font-size:12px;display:block;margin-bottom:5px}
+.mini p{font-size:11px;color:#758093;margin:0}
+details{background:#faf9f5;border:1px solid var(--line);border-radius:10px;padding:11px 14px;margin:8px 0;font-size:12px}
+summary{cursor:pointer;font-weight:650}
+details p{color:#69768a;margin-bottom:0}
+.quiz-item{border-bottom:1px solid var(--line);padding:13px 0}
+.quiz-item:last-child{border:0}
+.quiz-item summary{font-size:12px}
+.answer{font-size:12px;color:#55745a;padding:9px 0 0}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:15px 0}
+.btn{border:1px solid var(--line);background:white;color:#60718b;border-radius:9px;padding:7px 11px;font-size:11px}
+.btn:hover{background:var(--blue-soft)}
+.done-btn{background:var(--green);border-color:#dce9dc;color:#55745a}
+.source{font-size:11px;color:#9299a4;border-top:1px solid var(--line);padding-top:20px;margin-top:50px}
+.no-results{display:none;background:white;border:1px dashed #cbd2dc;padding:25px;border-radius:12px;color:var(--muted);font-size:13px;text-align:center}
+.mobile-menu{display:none}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.content{padding-left:4vw;padding-right:4vw}}
+@media(max-width:680px){
+ .layout{display:block}.sidebar{position:fixed;z-index:20;left:-280px;width:260px;transition:.25s;box-shadow:var(--shadow)}.sidebar.open{left:0}
+ .mobile-menu{display:inline-block;border:0;background:transparent;font-size:20px;color:var(--blue)}
+ .topbar{padding:0 16px}.breadcrumb{display:none}.search{width:48vw}
+ .progress-pill{display:none}.content{padding:25px 17px 65px}
+ .hero{padding:27px 23px}.hero:after{right:10px;font-size:120px}
+ .grid{grid-template-columns:1fr 1fr;gap:9px}.topic-card{padding:13px;min-height:126px}
+ .cards-2{grid-template-columns:1fr}.chapter-title h2{font-size:21px}
+ table{font-size:11px}th,td{padding:8px}
+}
+@media(max-width:390px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="brand"><div class="brand-mark">G</div><div><strong>GRAMMAR WIKI</strong><small>英文文法知識庫</small></div></div>
+  <div class="nav-label">START HERE</div>
+  <nav class="nav">
+    <a href="#home" class="active"><span class="num">⌂</span>學習總覽</a>
+    <a href="#roadmap"><span class="num">01</span>學習地圖</a>
+  </nav>
+  <div class="nav-label">GRAMMAR NOTES</div>
+  <nav class="nav" id="chapterNav">
+    <a href="#ch2"><span class="num">02</span>詞性與句子成分</a>
+    <a href="#ch3"><span class="num">03</span>五大基本句型</a>
+    <a href="#ch4"><span class="num">04</span>動詞與時態</a>
+    <a href="#ch5"><span class="num">05</span>名詞、冠詞與代名詞</a>
+    <a href="#ch6"><span class="num">06</span>形容詞、副詞與比較</a>
+    <a href="#ch7"><span class="num">07</span>介系詞與連接詞</a>
+    <a href="#ch8"><span class="num">08</span>三大子句與長句分析</a>
+    <a href="#ch9"><span class="num">09</span>常見錯誤</a>
+    <a href="#ch10"><span class="num">10</span>文法判斷流程</a>
+    <a href="#ch11"><span class="num">11</span>自我檢查</a>
+    <a href="#ch12"><span class="num">12</span>術語表</a>
+  </nav>
+  <div class="side-note">✦ 學習小提醒<br>先找句子骨架，再處理修飾語與子句。不要只背公式，也要看句子中的實際功能。</div>
+</aside>
+<main>
+<header class="topbar">
+  <button class="mobile-menu" id="menuBtn" aria-label="開啟選單">☰</button>
+  <div class="breadcrumb">知識庫　/　英文文法</div>
+  <div class="top-actions">
+    <div class="search-wrap"><span class="search-icon">⌕</span><input class="search" id="search" placeholder="搜尋文法、術語或例句…" aria-label="搜尋筆記"></div>
+    <div class="progress-pill" id="progress">完成 0 / 11 章</div>
+  </div>
+</header>
+<div class="content" id="home">
+  <section class="hero">
+    <div class="eyebrow">YOUR GRAMMAR LIBRARY</div>
+    <h1>把英文文法，<br>整理成自己的知識地圖。</h1>
+    <p>從單字在句子中的角色開始，一步步理解句型、動詞、修飾語與子句。讓文法不只是規則，而是看懂英文句子的工具。</p>
+    <div class="hero-meta"><span class="tag">中文筆記</span><span class="tag">基礎 → 進階</span><span class="tag">可搜尋・可追蹤進度</span></div>
+  </section>
+
+  <div class="section-head"><div><h2>學習總地圖</h2><p>依照建議順序，建立完整的英文句子觀念。</p></div></div>
+  <section class="panel" id="roadmap">
+    <h3>建議學習路線</h3>
+    <div class="path"><span>詞性與句子骨架</span><b>→</b><span>五大句型</span><b>→</b><span>動詞與時態</span><b>→</b><span>名詞與修飾語</span><b>→</b><span>介系詞與連接詞</span><b>→</b><span>子句與長句</span></div>
+    <div class="note">各主題彼此連動；這是一條建議學習路線，不代表每個文法主題完全獨立。</div>
+  </section>
+
+  <div class="section-head"><div><h2>文法主題</h2><p>選擇章節，開始閱讀筆記。</p></div></div>
+  <section class="grid" id="topicGrid">
+    <article class="topic-card" data-target="ch2"><div class="card-top"><span class="card-num">CHAPTER 02</span><span class="card-icon">Aa</span></div><h3>詞性與句子成分</h3><p>八大詞性、主詞、受詞、補語</p></article>
+    <article class="topic-card" data-target="ch3"><div class="card-top"><span class="card-num">CHAPTER 03</span><span class="card-icon">▤</span></div><h3>五大基本句型</h3><p>SV、SVC、SVO、SVOO、SVOC</p></article>
+    <article class="topic-card" data-target="ch4"><div class="card-top"><span class="card-num">CHAPTER 04</span><span class="card-icon">↗</span></div><h3>動詞與時態</h3><p>動詞類型、時態、被動語態</p></article>
+    <article class="topic-card" data-target="ch5"><div class="card-top"><span class="card-num">CHAPTER 05</span><span class="card-icon">▧</span></div><h3>名詞、冠詞與代名詞</h3><p>可數性、a/an/the、代名詞格位</p></article>
+    <article class="topic-card" data-target="ch6"><div class="card-top"><span class="card-num">CHAPTER 06</span><span class="card-icon">✧</span></div><h3>形容詞、副詞與比較</h3><p>修飾功能、比較級與最高級</p></article>
+    <article class="topic-card" data-target="ch7"><div class="card-top"><span class="card-num">CHAPTER 07</span><span class="card-icon">⇄</span></div><h3>介系詞與連接詞</h3><p>時間、地點、因果與讓步</p></article>
+    <article class="topic-card" data-target="ch8"><div class="card-top"><span class="card-num">CHAPTER 08</span><span class="card-icon">⌘</span></div><h3>三大子句與長句分析</h3><p>名詞、形容詞、副詞子句</p></article>
+    <article class="topic-card" data-target="ch9"><div class="card-top"><span class="card-num">CHAPTER 09</span><span class="card-icon">!</span></div><h3>常見錯誤</h3><p>常見錯誤與修正原因</p></article>
+    <article class="topic-card" data-target="ch10"><div class="card-top"><span class="card-num">CHAPTER 10</span><span class="card-icon">✓</span></div><h3>文法判斷流程</h3><p>用五個步驟拆解句子</p></article>
+  </section>
+  <div class="no-results" id="noResults">找不到符合的筆記。試試其他關鍵字吧！</div>
+
+  <section class="chapter searchable" id="ch2" data-title="詞性 句子成分 parts of speech">
+    <div class="chapter-title"><span class="badge">02</span><div><h2>詞性、句子成分與句型</h2><p>Parts of Speech & Sentence Elements</p></div></div>
+    <h3 class="subhead">2.1 八大詞性（Parts of Speech）</h3>
+    <table><thead><tr><th>詞性</th><th>英文</th><th>主要功能</th><th>例字</th></tr></thead><tbody>
+      <tr><td>名詞</td><td>Noun</td><td>人物、事物、地點或概念</td><td>teacher, book, happiness</td></tr>
+      <tr><td>代名詞</td><td>Pronoun</td><td>指稱人物或事物，避免重複</td><td>I, she, it, they</td></tr>
+      <tr><td>動詞</td><td>Verb</td><td>表示動作或狀態</td><td>read, work, be, seem</td></tr>
+      <tr><td>形容詞</td><td>Adjective</td><td>修飾名詞或說明主詞／受詞狀態</td><td>useful, happy, busy</td></tr>
+      <tr><td>副詞</td><td>Adverb</td><td>修飾動詞、形容詞、副詞或整句</td><td>carefully, very, often</td></tr>
+      <tr><td>介系詞</td><td>Preposition</td><td>表達時間、地點及其他關係</td><td>in, on, at, with</td></tr>
+      <tr><td>連接詞</td><td>Conjunction</td><td>連接單字、片語或子句</td><td>and, but, because</td></tr>
+      <tr><td>感嘆詞</td><td>Interjection</td><td>表達情緒</td><td>wow, oh, oops</td></tr>
+    </tbody></table>
+    <div class="example"><strong>The careful student answered correctly.</strong><br>careful：形容詞，修飾 student。student：名詞。answered：動詞。correctly：副詞，修飾 answered。</div>
+    <h3 class="subhead">2.2 詞性與句子成分的差異</h3>
+    <table><tr><th>概念</th><th>回答的問題</th><th>例子</th></tr><tr><td>詞性（Part of Speech）</td><td>這個字屬於哪一類？</td><td>noun、verb、adjective</td></tr><tr><td>句子成分（Sentence Element）</td><td>它在句中扮演什麼角色？</td><td>subject、object、complement</td></tr></table>
+    <div class="cards-2"><div class="mini"><strong>Emma reads books.</strong><p>Emma：名詞，擔任主詞。reads：動詞。books：名詞，擔任受詞。</p></div><div class="mini"><strong>Emma is happy.</strong><p>happy：形容詞，擔任主詞補語（Subject Complement）。</p></div></div>
+    <div class="note">重點：詞性與句子角色是不同層次。同一種詞性可以擔任不同句子角色。</div>
+    <div class="toolbar"><span></span><button class="btn done-btn" data-done="ch2">✓ 標記已完成</button></div>
+  </section>
+
+  <section class="chapter searchable" id="ch3" data-title="五大基本句型 sv svc svo svoo svoc subject verb object complement">
+    <div class="chapter-title"><span class="badge">03</span><div><h2>英文五大基本句型</h2><p>The Five Basic Sentence Patterns</p></div></div>
+    <p class="lead">先認識句子中的核心角色，再判斷動詞後面需要什麼成分。</p>
+    <div class="note">S = Subject 主詞　／　V = Verb 動詞　／　O = Object 受詞　／　C = Complement 補語　／　IO = 間接受詞　／　DO = 直接受詞</div>
+    <table><tr><th>句型</th><th>結構</th><th>判斷重點</th><th>例句</th></tr>
+      <tr><td><b>SV</b></td><td>主詞＋動詞</td><td>動詞不需要受詞，意思已完整</td><td>The children laughed.</td></tr>
+      <tr><td><b>SVC</b></td><td>主詞＋動詞＋主詞補語</td><td>補語說明主詞</td><td>The soup smells delicious.</td></tr>
+      <tr><td><b>SVO</b></td><td>主詞＋動詞＋受詞</td><td>受詞是動作涉及的對象</td><td>Mia opened the door.</td></tr>
+      <tr><td><b>SVOO</b></td><td>主詞＋動詞＋間接受詞＋直接受詞</td><td>常表示給予或傳遞</td><td>Leo gave his sister a gift.</td></tr>
+      <tr><td><b>SVOC</b></td><td>主詞＋動詞＋受詞＋受詞補語</td><td>補語說明受詞</td><td>The news made everyone happy.</td></tr>
+    </table>
+    <h3 class="subhead">受詞、補語與修飾語</h3>
+    <div class="cards-2"><div class="mini"><strong>受詞（Object）</strong><p>動詞作用所涉及的對象。</p></div><div class="mini"><strong>補語（Complement）</strong><p>補充說明主詞或受詞的身分、性質或狀態。</p></div><div class="mini"><strong>修飾語（Modifier）</strong><p>補充時間、地點、方式等資訊。</p></div><div class="mini"><strong>例句拆解</strong><p>Mia opened the door quietly. quietly 是修飾語，不會改變核心 SVO 句型。</p></div></div>
+    <div class="toolbar"><span></span><button class="btn done-btn" data-done="ch3">✓ 標記已完成</button></div>
+  </section>
+
+  <section class="chapter searchable" id="ch4" data-title="動詞 時態 verb tense passive voice 主詞動詞一致">
+    <div class="chapter-title"><span class="badge">04</span><div><h2>動詞與時態：學習方向</h2><p>Verbs & Tenses</p></div></div>
+    <p class="lead">先掌握句子骨架，再學習動詞形式與時態。</p>
+    <div class="cards-2"><div class="mini"><strong>時態學習項目</strong><p>現在簡單式、過去簡單式、未來表達、現在進行式、現在完成式等。</p></div><div class="mini"><strong>動詞相關概念</strong><p>動詞類型、主詞與動詞一致（Subject-Verb Agreement）、被動語態（Passive Voice）。</p></div></div>
+    <div class="example">I <strong>study</strong> English every day.<br>描述規律習慣。<br><br>I <strong>am studying</strong> English now.<br>描述現在正在進行的動作。</div>
+    <div class="note">判斷提醒：時態不能只靠時間副詞決定，還要一起看時間背景、動作狀態與句子語境。</div>
+    <p class="lead">本章目前依照來源 Wiki 的學習架構整理；來源總覽沒有完整列出所有時態公式與用法，詳細時態筆記可再逐項補充。</p>
+    <div class="toolbar"><span></span><button class="btn done-btn" data-done="ch4">✓ 標記已完成</button></div>
+  </section>
+
+  <section class="chapter searchable" id="ch5" data-title="名詞 冠詞 代名詞 countable uncountable articles pronouns">
+    <div class="chapter-title"><span class="badge">05</span><div><h2>名詞、冠詞與代名詞</h2><p>Nouns, Articles & Pronouns</p></div></div>
+    <h3 class="subhead">5.1 可數與不可數名詞</h3>
+    <table><tr><th>類型</th><th>基本用法</th><th>例子</th></tr><tr><td>單數可數名詞</td><td>通常需要限定詞</td><td>a book, the student, my chair</td></tr><tr><td>複數可數名詞</td><td>可表示多個個體或泛指一類</td><td>books, some students</td></tr><tr><td>不可數名詞</td><td>不直接加 a/an，通常不加複數字尾</td><td>water, information, advice</td></tr></table>
+    <div class="example">I bought <strong>a notebook</strong> yesterday.<br><strong>The notebooks</strong> are on the desk.<br>This <strong>information is</strong> useful.</div>
+    <p class="lead">information 為不可數名詞；若要計算，可說 <b>a piece of information</b>。</p>
+    <h3 class="subhead">5.2 冠詞 a、an、the</h3>
+    <table><tr><th>冠詞</th><th>常見功能</th></tr><tr><td>a / an</td><td>單數可數名詞前，常表示非特定對象</td></tr><tr><td>the</td><td>表示可辨認的特定對象，可搭配單數、複數及不可數名詞</td></tr><tr><td>零冠詞</td><td>泛指複數可數名詞或不可數名詞時常見</td></tr></table>
+    <div class="note">a 或 an 的選擇依據後面緊接的「發音」，不是字母：a university／an hour。</div>
+    <h3 class="subhead">5.3 代名詞</h3>
+    <table><tr><th>類型</th><th>例子</th><th>用法提示</th></tr><tr><td>主格</td><td>I, he, she, we, they</td><td>常作主詞</td></tr><tr><td>受格</td><td>me, him, her, us, them</td><td>作動詞或介系詞的受詞</td></tr><tr><td>所有格限定詞</td><td>my, your, her, their</td><td>放在名詞前</td></tr><tr><td>所有格代名詞</td><td>mine, yours, hers, theirs</td><td>可獨立使用，不再接名詞</td></tr></table>
+    <div class="example"><strong>They</strong> invited Emma to dinner. / Emma thanked <strong>them</strong> for the invitation.<br>This is <strong>my</strong> notebook. That one is <strong>yours</strong>.</div>
+    <div class="note">注意代名詞指稱是否清楚。若 she 可能指兩個不同的人，應改寫句子以明確交代對象。</div>
+    <div class="toolbar"><span></span><button class="btn done-btn" data-done="ch5">✓ 標記已完成</button></div>
+  </section>
+
+  <section class="chapter searchable" id="ch6" data-title="形容詞 副詞 比較級 最高級 adjective adverb comparative superlative">
+    <div class="chapter-title"><span class="badge">06</span><div><h2>形容詞、副詞與比較</h2><p>Adjectives, Adverbs & Comparison</p></div></div>
+    <h3 class="subhead">6.1 形容詞（Adjective）</h3>
+    <p class="lead">形容詞主要修飾名詞，也可以作補語說明主詞或受詞。</p>
+    <div class="example">Mia bought a <strong>comfortable</strong> chair.（修飾 chair）<br>The chair looks <strong>comfortable</strong>.（說明主詞狀態）<br>The news made Mia <strong>happy</strong>.（說明受詞 Mia 的狀態）</div>
+    <h3 class="subhead">6.2 副詞（Adverb）</h3>
+    <table><tr><th>修飾對象</th><th>例子</th><th>說明</th></tr><tr><td>動詞</td><td>speak clearly</td><td>說明說話方式</td></tr><tr><td>形容詞</td><td>very useful</td><td>加強形容詞程度</td></tr><tr><td>其他副詞</td><td>quite slowly</td><td>說明副詞程度</td></tr><tr><td>整個句子</td><td>Fortunately, nobody was hurt.</td><td>表達說話者看法</td></tr></table>
+    <div class="example">She looks <strong>happy</strong>. → happy 描述主詞狀態，使用形容詞。<br>She smiled <strong>happily</strong>. → happily 描述動作方式，使用副詞。</div>
+    <div class="note">副詞不一定以 -ly 結尾：fast 可作副詞；hard 表示「努力地」；hardly 表示「幾乎不」，與 hard 意思不同。</div>
+    <h3 class="subhead">6.3 原級、比較級與最高級</h3>
+    <table><tr><th>比較方式</th><th>常見結構</th><th>功能</th></tr><tr><td>原級比較</td><td>as + 原級 + as</td><td>程度相同</td></tr><tr><td>比較級</td><td>比較級 + than</td><td>比較兩者差異</td></tr><tr><td>最高級</td><td>the + 最高級 + 比較範圍</td><td>範圍內程度最高</td></tr></table>
+    <div class="example">as heavy as ／ heavier than ／ the heaviest of the three</div>
+    <div class="note">不要寫 more heavier，避免重複標示比較級。useful → more useful；good → better → best。比較時要確認比較的是相同類型的對象。</div>
+    <div class="toolbar"><span></span><button class="btn done-btn" data-done="ch6">✓ 標記已完成</button></div>
+  </section>
+
+  <section class="chapter searchable" id="ch7" data-title="介系詞 連接詞 preposition conjunction because because of although despite">
+    <div class="chapter-title"><span class="badge">07</span><div><h2>介系詞與連接詞</h2><p>Prepositions & Conjunctions</p></div></div>
+    <h3 class="subhead">7.1 介系詞（Preposition）</h3>
+    <p class="lead">介系詞與後面的受詞組成介系詞片語，可表達時間、地點、方向及其他關係。</p>
+    <table><tr><th>關係</th><th>常見介系詞</th><th>例子</th></tr><tr><td>時間</td><td>in, on, at</td><td>in October, on Monday, at noon</td></tr><tr><td>地點</td><td>in, on, at</td><td>in the room, on the desk, at the entrance</td></tr><tr><td>方向</td><td>to, into, toward</td><td>go to school, walk into the room</td></tr><tr><td>其他</td><td>with, for, about</td><td>with my classmates, for you, about the course</td></tr></table>
+    <div class="example">The class starts <strong>at nine</strong>. / The keys are <strong>on the desk</strong>.<br>She left <strong>without saying goodbye</strong>.</div>
+    <div class="note">介系詞後接代名詞時通常使用受格（with me、for her）；後接動詞表達活動時，通常使用 V-ing。</div>
+    <h3 class="subhead">7.2 連接詞（Conjunction）</h3>
+    <div class="cards-2"><div class="mini"><strong>對等連接詞</strong><p>Coordinating Conjunctions：連接地位相等的單字、片語或子句，例如 and、but、so。</p></div><div class="mini"><strong>從屬連接詞</strong><p>Subordinating Conjunctions：引導從屬子句，例如 because、although、if。</p></div></div>
+    <h3 class="subhead">7.3 because / because of；although / despite</h3>
+    <table><tr><th>用字</th><th>後接結構</th><th>關係</th></tr><tr><td>because</td><td>主詞＋動詞（完整子句）</td><td>原因</td></tr><tr><td>because of</td><td>名詞片語／動名詞片語</td><td>原因</td></tr><tr><td>although</td><td>主詞＋動詞（完整子句）</td><td>讓步</td></tr><tr><td>despite</td><td>名詞片語／動名詞片語</td><td>讓步</td></tr></table>
+    <div class="example">The game was canceled <strong>because it rained heavily</strong>.<br>The game was canceled <strong>because of the heavy rain</strong>.<br><strong>Although she was tired</strong>, she finished the report.<br><strong>Despite feeling tired</strong>, she finished the report.</div>
+    <div class="note">不要直接照搬中文「因為……所以……」的雙重標記。Because Mia felt sick, she stayed home. 或 Mia felt sick, so she stayed home.</div>
+    <div class="toolbar"><span></span><button class="btn done-btn" data-done="ch7">✓ 標記已完成</button></div>
+  </section>
+
+  <section class="chapter searchable" id="ch8" data-title="三大子句 長句分析 noun clause adjective clause adverb clause">
+    <div class="chapter-title"><span class="badge">08</span><div><h2>三大子句與長句分析</h2><p>Clauses & Sentence Analysis</p></div></div>
+    <p class="lead">子句通常包含主詞與動詞。依照在句中的功能，可分為三大類。</p>
+    <table><tr><th>子句類型</th><th>英文</th><th>功能</th><th>判斷方向</th></tr><tr><td>名詞子句</td><td>Noun Clause</td><td>作主詞、受詞或補語</td><td>整個子句在句中擔任什麼角色？</td></tr><tr><td>形容詞子句</td><td>Adjective Clause</td><td>修飾名詞或代名詞</td><td>子句修飾哪個對象？</td></tr><tr><td>副詞子句</td><td>Adverb Clause</td><td>表達時間、原因、條件、讓步等</td><td>與主要子句有什麼邏輯關係？</td></tr></table>
+    <div class="cards-2"><div class="mini"><strong>名詞子句</strong><p>I know <b>that Mia works here</b>.<br>that 子句整體擔任 know 的受詞。</p></div><div class="mini"><strong>形容詞子句</strong><p>The woman <b>who works here</b> is my aunt.<br>who 子句修飾 The woman。</p></div><div class="mini"><strong>副詞子句</strong><p>Mia stayed home <b>because she felt sick</b>.<br>because 子句補充原因。</p></div></div>
+    <h3 class="subhead">同一個引導字可能出現在不同子句</h3>
+    <div class="example">I believe <strong>that the plan will work</strong>.<br>that 子句是 believe 的受詞；that 只負責引導子句。<br><br>The plan <strong>that we discussed yesterday</strong> will work.<br>that 子句修飾 The plan；that 在子句中擔任 discussed 的受詞。</div>
+    <div class="note">判斷時要看整個子句的功能與內部結構，不要只靠 that、who、when 等字判斷。</div>
+    <h3 class="subhead">長句分析步驟</h3>
+    <div class="example">The student who sits near the window said that she needed help because the instructions were unclear.</div>
+    <ol class="lead"><li>先找主要子句：The student said something.</li><li>找出 who sits near the window：形容詞子句，修飾 student。</li><li>找出 that she needed help because the instructions were unclear：名詞子句，擔任 said 的受詞。</li><li>找出 because the instructions were unclear：副詞子句，補充原因。</li></ol>
+    <div class="note">核心原則：先找主要子句，再辨認其他子句的功能。</div>
+    <div class="toolbar"><span></span><button class="btn done-btn" data-done="ch8">✓ 標記已完成</button></div>
+  </section>
+
+  <section class="chapter searchable" id="ch9" data-title="常見錯誤 grammar mistakes">
+    <div class="chapter-title"><span class="badge">09</span><div><h2>常見錯誤整理</h2><p>Common Grammar Mistakes</p></div></div>
+    <table><tr><th>常見錯誤</th><th>建議修正</th><th>判斷原因</th></tr>
+      <tr><td>She explained the problem clear.</td><td>She explained the problem clearly.</td><td>修飾 explained 的方式，應用副詞</td></tr>
+      <tr><td>because of it was raining</td><td>because it was raining</td><td>because 後接完整子句</td></tr>
+      <tr><td>The list of new courses are...</td><td>The list of new courses is...</td><td>主詞核心是單數 list</td></tr>
+      <tr><td>The students studying in the library.</td><td>The students are studying in the library.</td><td>原句缺少主要動詞結構</td></tr>
+      <tr><td>Although the course was difficult.</td><td>Although the course was difficult, Mia completed it.</td><td>although 子句需要主要子句</td></tr>
+      <tr><td>Because Mia was tired, so she went home early.</td><td>Because Mia was tired, she went home early.</td><td>because 已表達原因，不需再加 so</td></tr>
+    </table>
+    <div class="note">其他提醒：不要只看中文意思，要確認詞性與後接結構；不要只看時間副詞決定時態；不要讓修飾語中的名詞影響主詞動詞一致；不要把 V-ing 或分詞誤當成完整句子的主要動詞。</div>
+    <div class="toolbar"><span></span><button class="btn done-btn" data-done="ch9">✓ 標記已完成</button></div>
+  </section>
+
+  <section class="chapter searchable" id="ch10" data-title="英文文法判斷流程 grammar process">
+    <div class="chapter-title"><span class="badge">10</span><div><h2>英文文法判斷流程</h2><p>A Practical Grammar Checklist</p></div></div>
+    <p class="lead">遇到句子或選擇題，可以依序檢查以下五個步驟。</p>
+    <table><tr><th>步驟</th><th>檢查問題</th><th>相關主題</th></tr><tr><td>1. 找主要動詞</td><td>哪個動詞表達主要動作或狀態？有沒有助動詞？</td><td>動詞、助動詞、非限定動詞</td></tr><tr><td>2. 確認句子骨架</td><td>主詞是誰？動詞後需要受詞或補語嗎？</td><td>句子成分、五大句型</td></tr><tr><td>3. 判斷詞性與搭配</td><td>這個字修飾什麼？前後需要什麼形式？</td><td>詞性、冠詞、數量詞、動詞搭配</td></tr><tr><td>4. 檢查時態與一致性</td><td>時間背景與動作狀態為何？主詞動詞一致嗎？</td><td>時態、主詞動詞一致</td></tr><tr><td>5. 確認連接關係</td><td>是並列、因果、條件還是修飾？</td><td>介系詞、連接詞、子句</td></tr></table>
+    <div class="note">複習錯題時，除了記錄答案，也記錄錯誤原因，例如：主詞核心是複數、enjoy 後接 V-ing、because 後接完整子句、空格修飾動詞因此需要副詞。</div>
+    <div class="toolbar"><span></span><button class="btn done-btn" data-done="ch10">✓ 標記已完成</button></div>
+  </section>
+
+  <section class="chapter searchable" id="ch11" data-title="自我檢查 練習題 答案">
+    <div class="chapter-title"><span class="badge">11</span><div><h2>自我檢查</h2><p>Quick Review</p></div></div>
+    <p class="lead">試著先回答問題，再點開查看參考答案。</p>
+    <div class="panel" id="quiz">
+      <div class="quiz-item"><details><summary>1. 詞性（Part of Speech）與句子成分（Sentence Element）有什麼不同？</summary><div class="answer">詞性是單字分類；句子成分是單字或片語在句中的角色。</div></details></div>
+      <div class="quiz-item"><details><summary>2. 五大基本句型分別是什麼？</summary><div class="answer">SV、SVC、SVO、SVOO、SVOC。</div></details></div>
+      <div class="quiz-item"><details><summary>3. SVOC 中的 C 是補充說明誰？</summary><div class="answer">SVOC 的 C 補充說明受詞。</div></details></div>
+      <div class="quiz-item"><details><summary>4. 單數可數名詞通常需要注意什麼？</summary><div class="answer">通常需要限定詞。</div></details></div>
+      <div class="quiz-item"><details><summary>5. a 與 an 的選擇依據字母還是發音？</summary><div class="answer">看後面緊接的發音。</div></details></div>
+      <div class="quiz-item"><details><summary>6. my 與 mine 的用法差在哪裡？</summary><div class="answer">my 放在名詞前；mine 可獨立使用。</div></details></div>
+      <div class="quiz-item"><details><summary>7. happy 與 happily 的修飾功能有何不同？</summary><div class="answer">happy 可描述主詞或受詞狀態；happily 可描述動作方式。</div></details></div>
+      <div class="quiz-item"><details><summary>8. because 與 because of 後面分別接什麼？</summary><div class="answer">because 後接完整子句；because of 後接名詞片語或動名詞片語。</div></details></div>
+      <div class="quiz-item"><details><summary>9. 名詞子句、形容詞子句、副詞子句如何區分？</summary><div class="answer">看子句在整句中的功能：名詞角色、修飾名詞，或表達副詞關係。</div></details></div>
+      <div class="quiz-item"><details><summary>10. 分析長句時，應該先找什麼？</summary><div class="answer">先找主要子句的主詞與主要動詞。</div></details></div>
+    </div>
+    <div class="toolbar"><span></span><button class="btn done-btn" data-done="ch11">✓ 標記已完成</button></div>
+  </section>
+
+  <section class="chapter searchable" id="ch12" data-title="術語表 glossary noun verb adjective">
+    <div class="chapter-title"><span class="badge">12</span><div><h2>術語表</h2><p>Grammar Glossary</p></div></div>
+    <table><tr><th>英文</th><th>中文</th><th>英文</th><th>中文</th></tr>
+      <tr><td>Part of Speech</td><td>詞性</td><td>Sentence Element</td><td>句子成分</td></tr>
+      <tr><td>Subject (S)</td><td>主詞</td><td>Verb (V)</td><td>動詞</td></tr>
+      <tr><td>Object (O)</td><td>受詞</td><td>Complement (C)</td><td>補語</td></tr>
+      <tr><td>Modifier</td><td>修飾語</td><td>Noun</td><td>名詞</td></tr>
+      <tr><td>Pronoun</td><td>代名詞</td><td>Adjective</td><td>形容詞</td></tr>
+      <tr><td>Adverb</td><td>副詞</td><td>Preposition</td><td>介系詞</td></tr>
+      <tr><td>Conjunction</td><td>連接詞</td><td>Interjection</td><td>感嘆詞</td></tr>
+      <tr><td>Countable Noun</td><td>可數名詞</td><td>Uncountable Noun</td><td>不可數名詞</td></tr>
+      <tr><td>Article</td><td>冠詞</td><td>Subject-Verb Agreement</td><td>主詞與動詞一致</td></tr>
+      <tr><td>Comparative</td><td>比較級</td><td>Superlative</td><td>最高級</td></tr>
+      <tr><td>Clause</td><td>子句</td><td>Noun Clause</td><td>名詞子句</td></tr>
+      <tr><td>Adjective Clause</td><td>形容詞子句</td><td>Adverb Clause</td><td>副詞子句</td></tr>
+      <tr><td>Main Clause</td><td>主要子句</td><td>Relative Pronoun</td><td>關係代名詞</td></tr>
+      <tr><td>Gerund</td><td>動名詞</td><td>Infinitive</td><td>不定詞</td></tr>
+      <tr><td>Passive Voice</td><td>被動語態</td><td></td><td></td></tr>
+    </table>
+    <div class="toolbar"><span></span><button class="btn done-btn" data-done="ch12">✓ 標記已完成</button></div>
+  </section>
+  <footer class="source">資料整理依據：Next School〈英文文法完整攻略｜基礎文法、句型、時態與文法規則一次整理〉。本網站內容為中文重點摘要與重新編排，例句僅作概念說明。來源總覽未完整展開的規則，會保留為待補充主題。<br>原始資料：nextschool.com.tw/article/151</footer>
+</div>
+</main>
+</div>
+<script>
+const sidebar=document.getElementById('sidebar');
+document.getElementById('menuBtn').addEventListener('click',()=>sidebar.classList.toggle('open'));
+document.querySelectorAll('.nav a,.topic-card').forEach(el=>el.addEventListener('click',()=>{
+ const target=el.dataset.target||el.getAttribute('href')?.slice(1);
+ if(target) document.getElementById(target)?.scrollIntoView({behavior:'smooth'});
+ sidebar.classList.remove('open');
+}));
+const doneButtons=[...document.querySelectorAll('[data-done]')];
+const key='grammarWikiDone_v1';
+let done=new Set(JSON.parse(localStorage.getItem(key)||'[]'));
+function updateProgress(){
+ doneButtons.forEach(b=>{const yes=done.has(b.dataset.done);b.textContent=yes?'✓ 已完成（點擊取消）':'✓ 標記已完成';b.classList.toggle('done-btn',yes)});
+ document.getElementById('progress').textContent=`完成 ${done.size} / 11 章`;
+}
+doneButtons.forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.done;done.has(id)?done.delete(id):done.add(id);localStorage.setItem(key,JSON.stringify([...done]));updateProgress()}));
+updateProgress();
+const search=document.getElementById('search');
+const chapters=[...document.querySelectorAll('.chapter.searchable')];
+const cards=[...document.querySelectorAll('.topic-card')];
+search.addEventListener('input',()=>{
+ const q=search.value.trim().toLowerCase();let count=0;
+ chapters.forEach(ch=>{
+   const match=!q||((ch.innerText+' '+(ch.dataset.title||'')).toLowerCase().includes(q));
+   ch.style.display=match?'':'none';if(match&&q)count++;
+ });
+ cards.forEach(card=>{
+   const target=document.getElementById(card.dataset.target);
+   const match=!q||(target&&(target.innerText+' '+(target.dataset.title||'')).toLowerCase().includes(q));
+   card.style.display=match?'':'none';
+ });
+ document.getElementById('noResults').style.display=q&&count===0?'block':'none';
+ if(q) document.querySelectorAll('.chapter').forEach(c=>{if(c.style.display!=='none')c.style.display='block'});
+});
+const observer=new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{
+  if(entry.isIntersecting){
+   document.querySelectorAll('.nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+entry.target.id));
+  }
+ });
+},{rootMargin:'-25% 0px -65% 0px'});
+document.querySelectorAll('.chapter').forEach(c=>observer.observe(c));
+</script>
+</body>
+</html>
